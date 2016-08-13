@@ -1,0 +1,62 @@
+spack.schema package
+====================
+
+Submodules
+----------
+
+spack.schema.compilers module
+-----------------------------
+
+.. automodule:: spack.schema.compilers
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.schema.mirrors module
+---------------------------
+
+.. automodule:: spack.schema.mirrors
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.schema.modules module
+---------------------------
+
+.. automodule:: spack.schema.modules
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.schema.packages module
+----------------------------
+
+.. automodule:: spack.schema.packages
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.schema.repos module
+-------------------------
+
+.. automodule:: spack.schema.repos
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.schema.targets module
+---------------------------
+
+.. automodule:: spack.schema.targets
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: spack.schema
+    :members:
+    :undoc-members:
+    :show-inheritance:
