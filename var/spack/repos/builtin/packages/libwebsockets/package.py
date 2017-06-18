@@ -35,5 +35,25 @@ class Libwebsockets(CMakePackage):
     version('2.0.3', 'a025156d606d90579e65d53ccd062a94')
     version('1.7.9', '7b3692ead5ae00fd0e1d56c080170f07')
 
-    depends_on('zlib')
-    depends_on('openssl')
+    variant('zlib', default=True, description='Include zlib support (required for extensions)')
+    variant('libevent', default=True, description='Compile with support for libevent (for callbacks)')
+    variant('openssl', default=True, description='Include SSL support (default OpenSSL)')
+
+    depends_on('zlib', when='+zlib')
+    depends_on('libevent', when='+libevent')
+    depends_on('openssl', when='+openssl')
+
+    def cmake_args(self):
+        spec = self.spec
+
+        cmake_args = [
+            '-DLWS_WITH_SSL:BOOL={0}'.format((
+                'ON' if '+openssl' in spec else 'OFF')),
+            '-DLWS_WITH_LIBEVENT:BOOL={0}'.format((
+                'ON' if '+libevent' in spec else 'OFF')),
+            '-DLWS_WITH_ZLIB:BOOL={0}'.format((
+                'ON' if '+zlib' in spec else 'OFF')),
+            '-DLWS_WITHOUT_EXTENSIONS:BOOL={0}'.format((
+                'ON' if '-zlib' in spec else 'OFF')),
+        ]
+        return cmake_args
