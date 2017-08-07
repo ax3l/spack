@@ -41,7 +41,7 @@ class Grpc(CMakePackage):
     # version('1.3.9', 'f29b35aed1523d0361d9fd40c19723e2')
 
     # only needed before 1.5.0
-    patch('internalheader.patch')
+    patch('internalheader.patch', when='@:1.4.3')
 
     depends_on('cmake@3.0.0:', type='build')
     depends_on('protobuf@3.0.2:')
