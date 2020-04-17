@@ -33,10 +33,19 @@ class Emacs(AutotoolsPackage, GNUMirrorPackage):
 
     depends_on('pkgconfig', type='build')
 
+    depends_on('dbus', when='platform=darwin')
+    depends_on('jpeg')
+    depends_on('giflib')
+    # package me (--with-ns)
+    # depends_on('gnustep', when='platform=darwin')
+    depends_on('libpng')
+    depends_on('libtiff')
+    # depends on rust which complicates things too much
+    # depends_on('librsvg')
+    depends_on('libxml2')
     depends_on('ncurses')
     depends_on('pcre')
     depends_on('zlib')
-    depends_on('libxml2')
     depends_on('libtiff', when='+X')
     depends_on('libpng', when='+X')
     depends_on('libxpm', when='+X')
@@ -44,8 +53,8 @@ class Emacs(AutotoolsPackage, GNUMirrorPackage):
     depends_on('libx11', when='+X')
     depends_on('libxaw', when='+X toolkit=athena')
     depends_on('gtkplus', when='+X toolkit=gtk')
+    # GNUtls often fails to build on macOS
     depends_on('gnutls', when='+tls')
-    depends_on('jpeg')
 
     def configure_args(self):
         spec = self.spec
@@ -61,6 +70,7 @@ class Emacs(AutotoolsPackage, GNUMirrorPackage):
 
         # On OS X/macOS, do not build "nextstep/Emacs.app", because
         # doing so throws an error at build-time
+        # needs additional GNUstep packages to enable this
         if sys.platform == 'darwin':
             args.append('--without-ns')
 
